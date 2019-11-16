@@ -10,24 +10,42 @@ using System.Web;
 /// <summary>
 /// Summary description for SubMenuDAL
 /// </summary>
-public class SubMenuDAL
+/// 
+namespace BusinessLogic
 {
-    DataUtilities objUtilities = new DataUtilities();
-    public int InsertMainMenu(SubMenuEntity ObjSubMenuEntity, char Operation)
+    public class SubMenuDAL
     {
-        Hashtable ht = new Hashtable();
-        ht.Add("@MainMenuID", ObjSubMenuEntity.MainMenuID);
-        ht.Add("@SubMenuName", ObjSubMenuEntity.SubMenuName);
-        ht.Add("@Status", ObjSubMenuEntity.Status);
-        ht.Add("@Operation", Operation);
-        return objUtilities.ExecuteNonQuery("InsertSubMenuDetails", ht);
+        DataUtilities objUtilities = new DataUtilities();
+        public int InsertMainMenu(SubMenuEntity ObjSubMenuEntity, char Operation)
+        {
+            Hashtable ht = new Hashtable();
+            if (Operation == 'I')
+            {
+                ht.Add("@SubMenuID", 0);
+            }
+            else
+            {
+                ht.Add("@SubMenuID", ObjSubMenuEntity.SubMenuID);
+            }
+            ht.Add("@MainMenuID", ObjSubMenuEntity.MainMenuID);
+            ht.Add("@SubMenuName", ObjSubMenuEntity.SubMenuName);
+            ht.Add("@Status", ObjSubMenuEntity.Status);
+            ht.Add("@Operation", Operation);
+            return objUtilities.ExecuteNonQuery("InsertSubMenuDetails", ht);
 
-    }
+        }
 
-    public DataSet GetSubMenuDetails(int SubMenuID)
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("@SubMenuID", SubMenuID);
-        return objUtilities.ExecuteDataSet("GetSubMenuDetails", ht);
+        public DataSet GetSubMenuDetails(int SubMenuID)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("@SubMenuID", SubMenuID);
+            return objUtilities.ExecuteDataSet("GetSubMenuDetails", ht);
+        }
+        public int DeleteSubMenu(int SubMenuID)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("@SubMenuID", SubMenuID);
+            return objUtilities.ExecuteNonQuery("DeleteSubMenu", ht);
+        }
     }
 }
