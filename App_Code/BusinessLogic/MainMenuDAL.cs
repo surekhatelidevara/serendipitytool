@@ -21,4 +21,10 @@ public class MainMenuDAL
         return objUtilities.ExecuteNonQuery("InsertMainMenuDetails", ht);
 
     }
+    public DataSet GetMainMenuDetails(int MainMenuID)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("@MainMenuID", MainMenuID);
+        return objUtilities.ExecuteDataSet("GetMainMenuDetails", ht);
+    }
 }
