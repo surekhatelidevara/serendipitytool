@@ -6,10 +6,13 @@ using System.Web;
 /// <summary>
 /// Summary description for MainMenuEntity
 /// </summary>
-public class MainMenuEntity
+namespace EntityManager
 {
-    public int MainMenuID { get; set; }
-    public string MenuName { get; set; }
-    public string Status { get; set; }
-    public string URL { get; set; }
+    public class MainMenuEntity
+    {
+        public int MainMenuID { get; set; }
+        public string MenuName { get; set; }
+        public int Status { get; set; }
+        public string URL { get; set; }
+    }
 }

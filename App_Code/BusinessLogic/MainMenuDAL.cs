@@ -5,7 +5,7 @@ using System.Web;
 using System.Collections;
 using System.Data;
 using DataManager;
-
+using EntityManager;
 /// <summary>
 /// Summary description for MainMenuDAL
 /// </summary>

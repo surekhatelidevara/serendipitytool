@@ -71,6 +71,7 @@ public partial class SubMenu : System.Web.UI.Page
         {
             objSubMenuEntity.MainMenuID = Convert.ToInt32(dropMainMenuList.SelectedValue);
             objSubMenuEntity.SubMenuName = txtName.Text;
+            objSubMenuEntity.URL = txtURL.Text;
             objSubMenuEntity.Status = Convert.ToInt32(dropStatus.SelectedValue);
             int Result = objSubMenuDAL.InsertMainMenu(objSubMenuEntity,'I');
             if(Result > 0)
@@ -96,6 +97,7 @@ public partial class SubMenu : System.Web.UI.Page
         dropMainMenuList.SelectedValue = "-1";
         txtName.Text = "";
         dropStatus.SelectedValue = "-1";
+        txtURL.Text = "";
     }
     protected void gvSubMenuList_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -139,6 +141,7 @@ public partial class SubMenu : System.Web.UI.Page
                 dropMainMenuList.SelectedValue = dsmenu.Tables[0].Rows[0]["MainMenuID"].ToString();
                 txtName.Text = dsmenu.Tables[0].Rows[0]["SubMenuName"].ToString();
                 dropStatus.SelectedValue = dsmenu.Tables[0].Rows[0]["Status"].ToString();
+                txtURL.Text = dsmenu.Tables[0].Rows[0]["URL"].ToString();
             }
         }
         catch(Exception ex)
@@ -162,6 +165,7 @@ public partial class SubMenu : System.Web.UI.Page
             objSubMenuEntity.MainMenuID = Convert.ToInt32(dropMainMenuList.SelectedValue);
             objSubMenuEntity.SubMenuName = txtName.Text;
             objSubMenuEntity.Status = Convert.ToInt32(dropStatus.SelectedValue);
+            objSubMenuEntity.URL = txtURL.Text;
             int Result = objSubMenuDAL.InsertMainMenu(objSubMenuEntity, 'U');
             if (Result > 0)
             {

@@ -16,7 +16,7 @@
                         <h3><i class="sl sl-icon-doc"></i>Add Sub menu</h3>
                     </div>
                     <div class="row with-forms">
-                        <div class="col-md-12" style="margin-left:310px;">
+                        <div class="col-md-12" style="margin-left: 310px;">
                             <asp:Label ID="lblMessage" runat="server"></asp:Label>
                         </div>
                     </div>
@@ -41,8 +41,15 @@
                                 <asp:ListItem Text="Active" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="InActive" Value="0"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvdropStatus" runat="server" ErrorMessage="Please Select Status" ControlToValidate="dropStatus" ForeColor="Red" ValidationGroup="Submenu" Display="Dynamic" InitialValue="-1"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfvdropStatus" runat="server" ErrorMessage="Please Select Status" ControlToValidate="dropStatus"
+                                ForeColor="Red" ValidationGroup="Submenu" Display="Dynamic" InitialValue="-1"></asp:RequiredFieldValidator>
 
+                        </div>
+                        <div class="col-md-6">
+                            <label>URL</label>
+                            <asp:TextBox ID="txtURL" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvURL" runat="server" ControlToValidate="txtURL" ForeColor="Red"
+                                ErrorMessage="Please Enter URL" ValidationGroup="Submenu" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row with-forms">
@@ -66,7 +73,7 @@
                                             EmptyDataText="There are no records to display." OnRowCommand="gvSubMenuList_RowCommand"
                                             BorderStyle="Solid" BorderWidth="0px" AllowPaging="true" PageSize="100"
                                             ForeColor="Black" OnPageIndexChanging="gvSubMenuList_PageIndexChanging">
-                                          
+
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl No">
                                                     <ItemTemplate>
@@ -91,6 +98,11 @@
                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
                                                         <asp:Label runat="server" ID="lblStatus" Text='<%#Eval("Status").ToString()=="1"?"Active" :"Inactive" %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="URL">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" ID="lblURL" Text='<%#Eval("URL") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Edit">
@@ -119,6 +131,15 @@
 
 
 
+                </div>
+                <div class="pagination-container">
+                    <nav class="pagination">
+                        <ul>
+                            <li><a href="#" class="current-page">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

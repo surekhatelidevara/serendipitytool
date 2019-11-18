@@ -48,7 +48,8 @@ public partial class MainMenu : System.Web.UI.Page
         {
             mainMenuEntity.MainMenuID = 0;
             mainMenuEntity.MenuName = txtMenuName.Text;
-            mainMenuEntity.Status = ddlStatus.SelectedValue;
+            mainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
+            mainMenuEntity.URL = txtURL.Text;
 
             int result = mainMenuDAL.InsertMainMenu(mainMenuEntity, 'i'); 
             if (result > 0)
@@ -73,8 +74,6 @@ public partial class MainMenu : System.Web.UI.Page
     {
         try
         {        
-            btnSumbit.Visible = false;
-            btnUpdate.Visible = true;
             if (e.CommandName != "Page")
             {
                 GridViewRow row = (GridViewRow)(((LinkButton)e.CommandSource).NamingContainer);
@@ -83,8 +82,9 @@ public partial class MainMenu : System.Web.UI.Page
 
                 if (e.CommandName == "Edit")
                 {
-                    txtMenuName.Text = ((Label)row.FindControl("lblMenuName")).Text.ToString();
-                    ddlStatus.SelectedItem.Text = ((Label)row.FindControl("lblStatus")).Text.ToString();
+                    btnUpdate.Visible = true;
+                    btnSumbit.Visible = false;
+                    GetMenuData(Convert.ToInt32(ViewState["MainMenuID"].ToString()));
                 }
 
                 else if (e.CommandName == "Delete")
@@ -105,14 +105,32 @@ public partial class MainMenu : System.Web.UI.Page
             
         }
     }
+    private void GetMenuData(int MenuID)
+    {
+        try
+        {
+            DataSet dsmenu = mainMenuDAL.GetMainMenuDetails(MenuID);
+            if (dsmenu.Tables[0].Rows.Count > 0)
+            {          
+                txtMenuName.Text = dsmenu.Tables[0].Rows[0]["MenuName"].ToString();
+                ddlStatus.SelectedValue = dsmenu.Tables[0].Rows[0]["Status"].ToString();
+                txtURL.Text = dsmenu.Tables[0].Rows[0]["URL"].ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
          try
          {
 
              mainMenuEntity.MainMenuID = Convert.ToInt32(ViewState["MainMenuID"].ToString());
-             mainMenuEntity.Status = ddlStatus.SelectedValue;
+             mainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
              mainMenuEntity.MenuName = txtMenuName.Text;
+             mainMenuEntity.URL = txtURL.Text;
 
              int result = mainMenuDAL.InsertMainMenu(mainMenuEntity, 'U'); 
              if (result >0)
@@ -138,7 +156,8 @@ public partial class MainMenu : System.Web.UI.Page
     private void Clear()
     {
         txtMenuName.Text = "";
-        ddlStatus.SelectedValue = "";
+        ddlStatus.SelectedValue = "-1";
+        txtURL.Text = "";
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {

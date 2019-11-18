@@ -14,8 +14,8 @@
                     <div class="add-listing-headline">
                         <h3><i class="sl sl-icon-map"></i>Main Menu</h3>
                     </div>
-                     <div class="row with-forms">
-                        <div class="col-md-12" style="margin-left:310px;">
+                    <div class="row with-forms">
+                        <div class="col-md-12" style="margin-left: 310px;">
                             <asp:Label ID="lblMessage" runat="server"></asp:Label>
                         </div>
                     </div>
@@ -33,18 +33,27 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Status</label>
-                                <asp:DropDownList ID="ddlStatus" CssClass="chosen-select-no-single" runat="server">
-                                    <asp:ListItem Text="Select" Value=""></asp:ListItem>
+                                <asp:DropDownList ID="ddlStatus" runat="server" AppendDataBoundItems="true">
+                                    <asp:ListItem Text="-Select-" Value="-1"></asp:ListItem>
                                     <asp:ListItem Text="Active" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="InActive" Value="0"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvstatus" runat="server" ControlToValidate="ddlStatus" Display="dynamic" ErrorMessage="Please Select Status"
-                                    ValidationGroup="Menu" ForeColor="red" InitialValue=""></asp:RequiredFieldValidator>
+                                    ValidationGroup="Menu" ForeColor="red" InitialValue="-1"></asp:RequiredFieldValidator>
+                            </div>
+
+                        </div>
+                        <div class="row with-forms">
+                            <div class="col-md-6">
+                                <label>URL</label>
+                                <asp:TextBox ID="txtURL" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvURL" runat="server" ControlToValidate="txtURL" ForeColor="Red"
+                                    ErrorMessage="Please Enter URL" ValidationGroup="Menu" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <!-- Row / End -->
-                        <asp:Button runat="server" ID="btnSumbit" OnClick="btnSumbit_Click" CssClass="button" Text="Submit" ValidationGroup="Menu"/>
-                        <asp:Button runat="server" ID="btnUpdate" OnClick="btnUpdate_Click" CssClass="button" Text="Update" ValidationGroup="Menu"/>
+                        <asp:Button runat="server" ID="btnSumbit" OnClick="btnSumbit_Click" CssClass="button" Text="Submit" ValidationGroup="Menu" />
+                        <asp:Button runat="server" ID="btnUpdate" OnClick="btnUpdate_Click" CssClass="button" Text="Update" ValidationGroup="Menu" />
                         <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" CssClass="button" Text="Cancel" />
                     </div>
                 </div>
@@ -80,6 +89,11 @@
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
                                     <asp:Label runat="server" ID="lblStatus" Text='<%#Eval("Status").ToString()=="1"?"Active" :"Inactive" %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="URL">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" ID="lblURL" Text='<%#Eval("URL") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit">
