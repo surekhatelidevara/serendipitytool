@@ -11,4 +11,5 @@ public class MainMenuEntity
     public int MainMenuID { get; set; }
     public string MenuName { get; set; }
     public string Status { get; set; }
+    public string URL { get; set; }
 }

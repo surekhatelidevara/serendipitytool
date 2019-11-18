@@ -20,6 +20,7 @@ namespace BusinessLogic
             ht.Add("@MainMenuID", ObjMainMenuEntity.MainMenuID);
             ht.Add("@MenuName", ObjMainMenuEntity.MenuName);
             ht.Add("@Status", ObjMainMenuEntity.Status);
+            ht.Add("@URL", ObjMainMenuEntity.URL);
             ht.Add("@Operation", Operation);
             return objUtilities.ExecuteNonQuery("InsertMainMenuDetails", ht);
 

@@ -11,5 +11,6 @@ namespace EntityManager
         public int MainMenuID { get; set; }
         public string SubMenuName { get; set; }
         public int Status { get; set; }
+        public string URL { get; set; }
     }
 }
