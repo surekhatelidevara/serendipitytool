@@ -45,7 +45,7 @@
                 <div class="dashboard-sticky-nav">
                     <div class="content-left pull-left">
                         <a href="dashboard.html">
-                            <img src="images/Yatra-white.png" alt="logo"></a>
+                            <img src="" alt="logo"></a>
                     </div>
                     <div class="content-right pull-right">
 
@@ -74,11 +74,11 @@
                              <li>
                                 <a><i class="sl sl-icon-layers"></i>Menu</a>
                                 <ul>
-                                    <li><a href="MainMenu.aspx">Main Menu <span class="nav-tag green">6</span></a></li>
-                                    <li><a href="SubMenu.aspx">Sub Menu <span class="nav-tag yellow">1</span></a></li>
+                                    <li><a href="MainMenu.aspx">Main Menu</a></li>
+                                    <li><a href="SubMenu.aspx">Sub Menu </a></li>
                                 </ul>
                             </li>
-                            <li class="active"><a href="dashboard.html"><i class="sl sl-icon-settings"></i>Dashboard</a></li>
+                            <li class="active"><a href="Layout.aspx"><i class="sl sl-icon-settings"></i>Layout</a></li>
                             <li><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i>Edit Profile</a></li>
                            
                             <li><a href="dashboard-booking.html"><i class="sl sl-icon-list"></i>Booking List</a></li>

@@ -12,8 +12,8 @@ using System.Drawing;
 
 public partial class MainMenu : System.Web.UI.Page
 {
-    MainMenuDAL mainMenuDAL=new MainMenuDAL();
-    MainMenuEntity mainMenuEntity = new MainMenuEntity();
+    MainMenuDAL objMainMenuDAL=new MainMenuDAL();
+    MainMenuEntity objMainMenuEntity = new MainMenuEntity();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -26,7 +26,7 @@ public partial class MainMenu : System.Web.UI.Page
     {
         try
         {
-            DataSet ds = mainMenuDAL.GetMainMenuDetails(0);
+            DataSet ds = objMainMenuDAL.GetMainMenuDetails(0);
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvMainMenu.DataSource = ds;
@@ -46,12 +46,12 @@ public partial class MainMenu : System.Web.UI.Page
     {
         try
         {
-            mainMenuEntity.MainMenuID = 0;
-            mainMenuEntity.MenuName = txtMenuName.Text;
-            mainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
-            mainMenuEntity.URL = txtURL.Text;
-
-            int result = mainMenuDAL.InsertMainMenu(mainMenuEntity, 'i'); 
+            objMainMenuEntity.MainMenuID = 0;
+            objMainMenuEntity.MenuName = txtMenuName.Text;
+            objMainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
+            objMainMenuEntity.URL = txtURL.Text;
+     
+            int result = objMainMenuDAL.InsertMainMenu(objMainMenuEntity, 'i'); 
             if (result > 0)
             {
                 lblMessage.Text = "Main Menu created successfully";
@@ -89,7 +89,7 @@ public partial class MainMenu : System.Web.UI.Page
 
                 else if (e.CommandName == "Delete")
                 {
-                    int DeleteMenu = mainMenuDAL.DeleteMainMenu(Convert.ToInt32(ViewState["MainMenuID"].ToString()));
+                    int DeleteMenu = objMainMenuDAL.DeleteMainMenu(Convert.ToInt32(ViewState["MainMenuID"].ToString()));
                     if (DeleteMenu > 0)
                     {
                         lblMessage.Text = "Deleted Successfully";
@@ -109,12 +109,13 @@ public partial class MainMenu : System.Web.UI.Page
     {
         try
         {
-            DataSet dsmenu = mainMenuDAL.GetMainMenuDetails(MenuID);
+            DataSet dsmenu = objMainMenuDAL.GetMainMenuDetails(MenuID);
             if (dsmenu.Tables[0].Rows.Count > 0)
             {          
                 txtMenuName.Text = dsmenu.Tables[0].Rows[0]["MenuName"].ToString();
                 ddlStatus.SelectedValue = dsmenu.Tables[0].Rows[0]["Status"].ToString();
                 txtURL.Text = dsmenu.Tables[0].Rows[0]["URL"].ToString();
+
             }
         }
         catch (Exception ex)
@@ -127,12 +128,12 @@ public partial class MainMenu : System.Web.UI.Page
          try
          {
 
-             mainMenuEntity.MainMenuID = Convert.ToInt32(ViewState["MainMenuID"].ToString());
-             mainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
-             mainMenuEntity.MenuName = txtMenuName.Text;
-             mainMenuEntity.URL = txtURL.Text;
+             objMainMenuEntity.MainMenuID = Convert.ToInt32(ViewState["MainMenuID"].ToString());
+             objMainMenuEntity.Status = Convert.ToInt32(ddlStatus.SelectedValue);
+             objMainMenuEntity.MenuName = txtMenuName.Text;
+             objMainMenuEntity.URL = txtURL.Text;
 
-             int result = mainMenuDAL.InsertMainMenu(mainMenuEntity, 'U'); 
+             int result = objMainMenuDAL.InsertMainMenu(objMainMenuEntity, 'U'); 
              if (result >0)
              {
                  lblMessage.Text = "Main Menu updated successfully";
